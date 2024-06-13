@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pathfinding Visualizer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><p class="controls" id="heading">Pathfinding Visualizer</p></li>
+          <li>
+            <select class="controls" id="selector">
+              <option value="">Algorithms</option>
+              <option value="Dfs">Dfs</option>
+              <option value="Bfs">Bfs</option>
+              <option value="A*">A*</option>
+            </select>
+          </li>
+          <li><button class="controls" id="clearGrid">Clear Grid</button></li>
+          <li>
+            <button class="controls" id="clearPath">Clear Path</button>
+          </li>
+          <li>
+            <button class="controls" onclick="alert('work in progress')">
+              Generate maze
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="btn"></div>
+    <div class="grid-box"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
