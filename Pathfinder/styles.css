@@ -1,63 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 body {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  background-color: #f2dbbf;
+  min-height: 100vh;
+  background-color: #1a1e21;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+nav {
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+nav li {
+  height: 50px;
+}
+nav .controls {
+  height: 100%;
+  padding: 0 30px;
+  border: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+nav .controls:hover {
+  background-color: #e5f0f3;
+}
+nav li:first-child {
+  margin-right: auto;
+}
+
+body {
+  background-color: #e5f0f3;
 }
 #heading {
-  color: #545b77;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  text-align: center;
-  font-size: 40px;
-  margin-bottom: 30px;
-}
-
-.box {
   display: flex;
-  flex-direction: row-reverse; /* Change from default 'row' to 'row-reverse' */
-  align-items: flex-end;
-  justify-content: center;
-  gap: 5px;
-  margin-bottom: 40px;
+  font-size: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.controls {
-  text-align: center;
-}
-.bar {
-  height: 500px;
-  width: 20px;
-  margin-bottom: 20px;
-}
-#sliders {
+.grid-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* adds space between the label and the slider */
-  margin-bottom: 30px;
-  font-size: 20px;
-  color: #a4aac1;
-}
-#speed {
-  margin-left: 40px;
-}
-.dropdown {
-  font-size: 20px;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-left: 40px;
+  margin-top: 10px;
+  background-color: #e5f0f3;
+  flex-direction: column;
+  /* gap: 2px; */
 }
 
-.btn {
-  font-size: 20px;
-  background-color: #374259;
-  color: #f2d8d8;
-  border: none;
-  font-style: normal;
-  padding: 5px 15px 5px 15px;
-  margin-left: 20px;
-  margin-right: 20px;
-  border-radius: 3px;
+.row {
+  display: flex;
+  /* gap: 2px; */
 }
-.btn:hover {
-  background-color: black;
-  color: white;
+
+.cell {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid #99c3cf;
+  box-sizing: border-box;
+  background-color: #caf4ff;
 }
