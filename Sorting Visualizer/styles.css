@@ -1,0 +1,63 @@
+body {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background-color: #f2dbbf;
+}
+#heading {
+  color: #545b77;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.box {
+  display: flex;
+  flex-direction: row-reverse; /* Change from default 'row' to 'row-reverse' */
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 40px;
+}
+
+.controls {
+  text-align: center;
+}
+.bar {
+  height: 500px;
+  width: 20px;
+  margin-bottom: 20px;
+}
+#sliders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* adds space between the label and the slider */
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #a4aac1;
+}
+#speed {
+  margin-left: 40px;
+}
+.dropdown {
+  font-size: 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: 40px;
+}
+
+.btn {
+  font-size: 20px;
+  background-color: #374259;
+  color: #f2d8d8;
+  border: none;
+  font-style: normal;
+  padding: 5px 15px 5px 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 3px;
+}
+.btn:hover {
+  background-color: black;
+  color: white;
+}
