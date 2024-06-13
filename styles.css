@@ -1,0 +1,40 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e4f1ff;
+}
+
+#heading {
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: center;
+  color: #e4f1ff;
+  background-color: #2f3c7e;
+  border-radius: 5px;
+}
+#box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #2f3c7e;
+}
+#sortimg {
+  background-image: url(/sortingviz.png);
+  height: 200px;
+  width: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#pathimg {
+  background-image: url(/pathfind.png);
+  height: 200px;
+  width: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+a {
+  text-decoration: none;
+}
