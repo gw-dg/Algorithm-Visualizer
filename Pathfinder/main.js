@@ -56,21 +56,30 @@ document.getElementById("selector").addEventListener("change", function () {
   if (value == "Dfs") {
     let indPair = [];
     let vis = Array.from({ length: row }, () => Array(col).fill(false));
-    let isPathFound = dfs(sX, sY, eX, eY, indPair, vis, []);
+    let prev = Array.from({ length: row }, () => Array(col).fill([-1, -1]));
+    let isPathFound = dfs(sX, sY, eX, eY, indPair, vis, prev);
     indPair.shift();
     indPair.pop();
     toggleButtons(true);
-    let shortestPath = [...indPair];
-    if (isPathFound) animate(indPair, shortestPath);
-    else animate(indPair);
+
+    if (isPathFound) {
+      let path = shortestPath(sX, sY, eX, eY, prev);
+      animate(indPair, path);
+    } else animate(indPair);
   } else if (value === "Bfs") {
     let indPair = [];
     let vis = Array.from({ length: row }, () => Array(col).fill(false));
-    let shortestPath = [];
+    let prev = Array.from({ length: row }, () =>
+      Array.from({ length: col }, () => [-1, -1])
+    );
 
-    bfs(sX, sY, eX, eY, indPair, vis, shortestPath);
+    let isPathFound = bfs(sX, sY, eX, eY, indPair, vis, prev);
+    // console.log(prev);
     toggleButtons(true);
-    animate(indPair);
+    if (isPathFound) {
+      let path = shortestPath(sX, sY, eX, eY, prev);
+      animate(indPair, path);
+    } else animate(indPair);
   } else if (value === "A*") {
     alert("work in progress");
   }
@@ -95,19 +104,6 @@ cells.forEach((cell) => {
     isMouseDown = false;
   });
 
-  // function toggleCellColor(cell) {
-  //   let row = parseInt(cell.dataset.row);
-  //   let col = parseInt(cell.dataset.col);
-
-  //   // Check if the cell is not start or end node
-  //   if (!(row === sX && col === sY) && !(row === eX && col === eY)) {
-  //     if (cell.style.backgroundColor === "#99c3cf") {
-  //       cell.style.backgroundColor = "#caf4ff";
-  //     } else {
-  //       cell.style.backgroundColor = "#99c3cf";
-  //     }
-  //   }
-  // }
   function toggleCellColor(cell) {
     let row = parseInt(cell.dataset.row);
     let col = parseInt(cell.dataset.col);
@@ -211,7 +207,7 @@ function animatePath(shortestPath) {
 }
 
 //ALGORITHMS
-function dfs(sX, sY, eX, eY, indPair, vis) {
+function dfs(sX, sY, eX, eY, indPair, vis, prev) {
   if (vis[sX][sY]) {
     return false;
   }
@@ -234,7 +230,8 @@ function dfs(sX, sY, eX, eY, indPair, vis) {
       !vis[nX][nY] &&
       !grid[nX][nY].isWall
     ) {
-      if (dfs(nX, nY, eX, eY, indPair, vis)) {
+      prev[nX][nY] = [sX, sY];
+      if (dfs(nX, nY, eX, eY, indPair, vis, prev)) {
         return true;
       }
     }
@@ -242,7 +239,7 @@ function dfs(sX, sY, eX, eY, indPair, vis) {
   return false;
 }
 
-function bfs(sX, sY, eX, eY, indPair, vis) {
+function bfs(sX, sY, eX, eY, indPair, vis, prev) {
   let dir = [
     [0, -1],
     [-1, 0],
@@ -266,9 +263,10 @@ function bfs(sX, sY, eX, eY, indPair, vis) {
         !vis[nX][nY] &&
         !grid[nX][nY].isWall
       ) {
+        prev[nX][nY] = [i, j];
         if (nX == eX && nY == eY) {
           pathFound = true;
-          return;
+          return true;
         }
         queue.push([nX, nY]);
         indPair.push([nX, nY]);
@@ -276,5 +274,33 @@ function bfs(sX, sY, eX, eY, indPair, vis) {
       }
     }
   }
-  return pathFound;
+  return false;
+}
+
+//ARRAY CHECK FUNCTION
+function arraysEqual(a, b) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
+
+//SHORTEST PATH FUNCTION
+function shortestPath(sX, sY, eX, eY, prev) {
+  let path = [];
+  let curr = [eX, eY];
+
+  if (prev[eX][eY][0] === -1 && prev[eX][eY][1] === -1) {
+    return path;
+  }
+  while (!arraysEqual(curr, [sX, sY])) {
+    path.push(curr);
+    let [i, j] = curr;
+    let prevInd = prev[i][j];
+    curr = prevInd;
+  }
+  path.shift();
+  path.reverse();
+  return path;
 }
